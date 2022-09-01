@@ -47,6 +47,8 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -131,7 +133,8 @@ public class TestPutSplunkHTTP {
 
         // then
         testRunner.assertAllFlowFilesTransferred(PutSplunkHTTP.RELATIONSHIP_SUCCESS, 1);
-        assertEquals("/services/collector/raw?sourcetype=test%3Fsource%3Ftype&source=test_source", path.getValue());
+        assertTrue("/services/collector/raw?source=test_source&sourcetype=test%3Fsource%3Ftype".equals(path.getValue()) ||"/services/collector/raw?sourcetype=test%3Fsource%3Ftype&source=test_source".equals( path.getValue()) );
+	
     }
 
     @Test
